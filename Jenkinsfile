@@ -14,16 +14,12 @@ pipeline {
     }
     parameters {
         // string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-
         // text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-
         booleanParam(name: 'Deploy', defaultValue: false, description: 'Toggle this value')
-
         // choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-
         // password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
-    // build
+
     stages {
         stage('Get the version') {
             steps {
@@ -34,24 +30,26 @@ pipeline {
                 }
             }
         }
-    }
-    stage('Install dependencies') {
-        steps {
-            sh """
-                npm install
-            """
+
+        stage('Install dependencies') {
+            steps {
+                sh """
+                    npm install
+                """
+            }
         }
-     }
-    stage('Build') {
-        steps {
-            sh """
-                ls -la
-                zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
-                ls -ltr
-            """
+
+        stage('Build') {
+            steps {
+                sh """
+                    ls -la
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
+                """
+            }
         }
     }
-        // post build
+
     post { 
         always { 
             echo 'I will always say Hello again!'
@@ -60,7 +58,7 @@ pipeline {
         failure { 
             echo 'this runs when pipeline is failed, used generally to send some alerts'
         }
-        success{
+        success {
             echo 'I will say Hello when pipeline is success'
         }
     }
