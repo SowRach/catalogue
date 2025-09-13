@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh """
                     ls -la
-                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip" || ## -q quite silent zip command log
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
                     ls -ltr
                 """
             }
