@@ -9,6 +9,7 @@ pipeline {
         nexusURL = '172.31.26.75:8081'
     }
     options {
+        ansiColor('xterm')
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
     }
